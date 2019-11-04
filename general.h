@@ -1,0 +1,54 @@
+#include <string>
+#include <cstdlib>
+#include <set>
+
+using namespace std;
+
+enum TOKEN_TYPES
+{
+  LETRA,
+  DIGITO,
+  IDENTIFICADOR,
+  NUMERO,
+  FACTOR,
+  TERMINO,
+  EXPRESION,
+  OPERADOR_LOGICO,
+  CONDICION,
+  SENTENCIA,
+  PROCEDIMIENTO,
+  VARIABLE_DECLARACION,
+  CONSTANTE_DECLARACION,
+  BLOQUE,
+  PROGRAMA,
+  ASIGNACION,
+  OPEN_PAR,
+  CLOSE_PAR,
+  SEMICOLON,
+  COMA,
+  IF_KEYWORD,
+  IN_KEYWORD,
+  DO_KEYWORD,
+  ODD_KEYWORD,
+  OUT_KEYWORD,
+  END_KEYWORD,
+  INT_KEYWORD,
+  ELSE_KEYWORD,
+  THEN_KEYWORD,
+  CALL_KEYWORD,
+  BEGIN_KEYWORD,
+  WHILE_KEYWORD,
+  CONST_KEYWORD,
+  PROCEDURE_KEYWORD
+};
+
+typedef struct Token
+{
+  TOKEN_TYPES tipo;
+  string valor;
+} Token;
+
+set<char> Letras;
+set<char> Numeros;
+
+void initEnv();
