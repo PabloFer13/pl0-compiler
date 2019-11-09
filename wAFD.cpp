@@ -14,6 +14,10 @@ void AFD::wProcess()
     {
       whProcess();
     }
+    else if (c == 'r' || c == 'R')
+    {
+      wrProcess();
+    }
     else if (Letras.find(c) != Letras.end() || Numeros.find(c) != Numeros.end())
     {
       pos--;
@@ -36,6 +40,29 @@ void AFD::whProcess()
     if (c == 'i' || c == 'I')
     {
       whiProcess();
+    }
+    else if (Letras.find(c) != Letras.end() || Numeros.find(c) != Numeros.end())
+    {
+      pos--;
+      identifierProcess();
+    }
+    else
+    {
+      pos--;
+    }
+  }
+}
+
+void AFD::wrProcess()
+{
+  tokenValue += 'r';
+  if (pos < codeLine.size() && estado != EST_ERROR)
+  {
+    char c = codeLine[pos];
+    pos++;
+    if (c == 'i' || c == 'I')
+    {
+      wriProcess();
     }
     else if (Letras.find(c) != Letras.end() || Numeros.find(c) != Numeros.end())
     {
@@ -72,6 +99,29 @@ void AFD::whiProcess()
   }
 }
 
+void AFD::wriProcess()
+{
+  tokenValue += 'i';
+  if (pos < codeLine.size() && estado != EST_ERROR)
+  {
+    char c = codeLine[pos];
+    pos++;
+    if (c == 't' || c == 'T')
+    {
+      writProcess();
+    }
+    else if (Letras.find(c) != Letras.end() || Numeros.find(c) != Numeros.end())
+    {
+      pos--;
+      identifierProcess();
+    }
+    else
+    {
+      pos--;
+    }
+  }
+}
+
 void AFD::whilProcess()
 {
   tokenValue += 'l';
@@ -95,10 +145,53 @@ void AFD::whilProcess()
   }
 }
 
+void AFD::writProcess()
+{
+  tokenValue += 't';
+  if (pos < codeLine.size() && estado != EST_ERROR)
+  {
+    char c = codeLine[pos];
+    pos++;
+    if (c == 'e' || c == 'E')
+    {
+      writeProcess();
+    }
+    else if (Letras.find(c) != Letras.end() || Numeros.find(c) != Numeros.end())
+    {
+      pos--;
+      identifierProcess();
+    }
+    else
+    {
+      pos--;
+    }
+  }
+}
+
 void AFD::whileProcess()
 {
   tokenValue += 'e';
   tokenType = TOKEN_TYPES::WHILE_KEYWORD;
+  if (pos < codeLine.size() && estado != EST_ERROR)
+  {
+    char c = codeLine[pos];
+    pos++;
+    if (Letras.find(c) != Letras.end() || Numeros.find(c) != Numeros.end())
+    {
+      pos--;
+      identifierProcess();
+    }
+    else
+    {
+      pos--;
+    }
+  }
+}
+
+void AFD::writeProcess()
+{
+  tokenValue += 'e';
+  tokenType = TOKEN_TYPES::WRITE_KEYWORD;
   if (pos < codeLine.size() && estado != EST_ERROR)
   {
     char c = codeLine[pos];

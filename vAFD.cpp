@@ -3,16 +3,16 @@
 
 using namespace std;
 
-void AFD::oProcess()
+void AFD::vProcess()
 {
-  tokenValue += 'o';
+  tokenValue += 'v';
   if (pos < codeLine.size() && estado != EST_ERROR)
   {
     char c = codeLine[pos];
     pos++;
-    if (c == 'd' || c == 'D')
+    if (c == 'a' || c == 'A')
     {
-      odProcess();
+      vaProcess();
     }
     else if (Letras.find(c) != Letras.end() || Numeros.find(c) != Numeros.end())
     {
@@ -26,16 +26,16 @@ void AFD::oProcess()
   }
 }
 
-void AFD::odProcess()
+void AFD::vaProcess()
 {
-  tokenValue += 'd';
+  tokenValue += 'a';
   if (pos < codeLine.size() && estado != EST_ERROR)
   {
     char c = codeLine[pos];
     pos++;
-    if (c == 'd' || c == 'D')
+    if (c == 'r' || c == 'R')
     {
-      oddProcess();
+      varProcess();
     }
     else if (Letras.find(c) != Letras.end() || Numeros.find(c) != Numeros.end())
     {
@@ -49,10 +49,10 @@ void AFD::odProcess()
   }
 }
 
-void AFD::oddProcess()
+void AFD::varProcess()
 {
-  tokenValue += 'd';
-  tokenType = TOKEN_TYPES::ODD_KEYWORD;
+  tokenValue += 'r';
+  tokenType = TOKEN_TYPES::VAR_KEYWORD;
   if (pos < codeLine.size() && estado != EST_ERROR)
   {
     char c = codeLine[pos];

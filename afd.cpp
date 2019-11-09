@@ -157,6 +157,14 @@ void AFD::firstLetterProcess()
     {
       pProcess();
     }
+    else if (c == 'v' || c == 'V')
+    {
+      vProcess();
+    }
+    else if (c == 'r' || c == 'R')
+    {
+      rProcess();
+    }
     else if (Letras.find(c) != Letras.end())
     {
       tokenValue += c;
@@ -187,4 +195,3 @@ void AFD::identifierProcess()
     }
   }
 }
-

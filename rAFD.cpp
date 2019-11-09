@@ -3,16 +3,16 @@
 
 using namespace std;
 
-void AFD::oProcess()
+void AFD::rProcess()
 {
-  tokenValue += 'o';
+  tokenValue += 'r';
   if (pos < codeLine.size() && estado != EST_ERROR)
   {
     char c = codeLine[pos];
     pos++;
-    if (c == 'd' || c == 'D')
+    if (c == 'e' || c == 'E')
     {
-      odProcess();
+      reProcess();
     }
     else if (Letras.find(c) != Letras.end() || Numeros.find(c) != Numeros.end())
     {
@@ -26,16 +26,16 @@ void AFD::oProcess()
   }
 }
 
-void AFD::odProcess()
+void AFD::reProcess()
 {
-  tokenValue += 'd';
+  tokenValue += 'e';
   if (pos < codeLine.size() && estado != EST_ERROR)
   {
     char c = codeLine[pos];
     pos++;
-    if (c == 'd' || c == 'D')
+    if (c == 'a' || c == 'A')
     {
-      oddProcess();
+      reaProcess();
     }
     else if (Letras.find(c) != Letras.end() || Numeros.find(c) != Numeros.end())
     {
@@ -49,10 +49,33 @@ void AFD::odProcess()
   }
 }
 
-void AFD::oddProcess()
+void AFD::reaProcess()
+{
+  tokenValue += 'a';
+  if (pos < codeLine.size() && estado != EST_ERROR)
+  {
+    char c = codeLine[pos];
+    pos++;
+    if (c == 'd' || c == 'D')
+    {
+      readProcess();
+    }
+    else if (Letras.find(c) != Letras.end() || Numeros.find(c) != Numeros.end())
+    {
+      pos--;
+      identifierProcess();
+    }
+    else
+    {
+      pos--;
+    }
+  }
+}
+
+void AFD::readProcess()
 {
   tokenValue += 'd';
-  tokenType = TOKEN_TYPES::ODD_KEYWORD;
+  tokenType = TOKEN_TYPES::READ_KEYWORD;
   if (pos < codeLine.size() && estado != EST_ERROR)
   {
     char c = codeLine[pos];
