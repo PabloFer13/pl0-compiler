@@ -1,4 +1,3 @@
-#include "general.h"
 #include "afd.h"
 
 using namespace std;
@@ -28,6 +27,10 @@ void AFD::eProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::enProcess()
@@ -50,6 +53,10 @@ void AFD::enProcess()
     {
       pos--;
     }
+  }
+  else
+  {
+    getToken();
   }
 }
 
@@ -74,12 +81,16 @@ void AFD::elProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::endProcess()
 {
   tokenValue += 'd';
-  tokenType = TOKEN_TYPES::END_KEYWORD;
+  tokenType = TOKEN_TYPES::END;
   if (pos < codeLine.size() && estado != EST_ERROR)
   {
     char c = codeLine[pos];
@@ -93,6 +104,10 @@ void AFD::endProcess()
     {
       pos--;
     }
+  }
+  else
+  {
+    getToken();
   }
 }
 
@@ -117,12 +132,16 @@ void AFD::elsProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::elseProcess()
 {
   tokenValue += 'e';
-  tokenType = TOKEN_TYPES::ELSE_KEYWORD;
+  tokenType = TOKEN_TYPES::ELSE;
   if (pos < codeLine.size() && estado != EST_ERROR)
   {
     char c = codeLine[pos];
@@ -136,5 +155,9 @@ void AFD::elseProcess()
     {
       pos--;
     }
+  }
+  else
+  {
+    getToken();
   }
 }

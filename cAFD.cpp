@@ -1,4 +1,3 @@
-#include "general.h"
 #include "afd.h"
 
 using namespace std;
@@ -28,6 +27,10 @@ void AFD::cProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::caProcess()
@@ -50,6 +53,10 @@ void AFD::caProcess()
     {
       pos--;
     }
+  }
+  else
+  {
+    getToken();
   }
 }
 
@@ -74,6 +81,10 @@ void AFD::coProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::calProcess()
@@ -96,6 +107,10 @@ void AFD::calProcess()
     {
       pos--;
     }
+  }
+  else
+  {
+    getToken();
   }
 }
 
@@ -120,12 +135,16 @@ void AFD::conProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::callProcess()
 {
   tokenValue += 'l';
-  tokenType = TOKEN_TYPES::CALL_KEYWORD;
+  tokenType = TOKEN_TYPES::CALL;
   if (pos < codeLine.size() && estado != EST_ERROR)
   {
     char c = codeLine[pos];
@@ -139,6 +158,10 @@ void AFD::callProcess()
     {
       pos--;
     }
+  }
+  else
+  {
+    getToken();
   }
 }
 
@@ -163,12 +186,16 @@ void AFD::consProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::constProcess()
 {
   tokenValue += 't';
-  tokenType = TOKEN_TYPES::CONST_KEYWORD;
+  tokenType = TOKEN_TYPES::CONST;
   if (pos < codeLine.size() && estado != EST_ERROR)
   {
     char c = codeLine[pos];
@@ -182,5 +209,9 @@ void AFD::constProcess()
     {
       pos--;
     }
+  }
+  else
+  {
+    getToken();
   }
 }

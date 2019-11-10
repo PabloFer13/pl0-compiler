@@ -1,4 +1,3 @@
-#include "general.h"
 #include "afd.h"
 
 using namespace std;
@@ -28,6 +27,10 @@ void AFD::wProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::whProcess()
@@ -50,6 +53,10 @@ void AFD::whProcess()
     {
       pos--;
     }
+  }
+  else
+  {
+    getToken();
   }
 }
 
@@ -74,6 +81,10 @@ void AFD::wrProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::whiProcess()
@@ -96,6 +107,10 @@ void AFD::whiProcess()
     {
       pos--;
     }
+  }
+  else
+  {
+    getToken();
   }
 }
 
@@ -120,6 +135,10 @@ void AFD::wriProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::whilProcess()
@@ -142,6 +161,10 @@ void AFD::whilProcess()
     {
       pos--;
     }
+  }
+  else
+  {
+    getToken();
   }
 }
 
@@ -166,12 +189,16 @@ void AFD::writProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::whileProcess()
 {
   tokenValue += 'e';
-  tokenType = TOKEN_TYPES::WHILE_KEYWORD;
+  tokenType = TOKEN_TYPES::WHILE;
   if (pos < codeLine.size() && estado != EST_ERROR)
   {
     char c = codeLine[pos];
@@ -186,12 +213,16 @@ void AFD::whileProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::writeProcess()
 {
   tokenValue += 'e';
-  tokenType = TOKEN_TYPES::WRITE_KEYWORD;
+  tokenType = TOKEN_TYPES::WRITE;
   if (pos < codeLine.size() && estado != EST_ERROR)
   {
     char c = codeLine[pos];
@@ -205,5 +236,9 @@ void AFD::writeProcess()
     {
       pos--;
     }
+  }
+  else
+  {
+    getToken();
   }
 }

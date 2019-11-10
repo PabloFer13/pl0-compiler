@@ -1,22 +1,25 @@
-#include <string>
-#include <stack>
-#include <queue>
 #include "general.h"
 
 using namespace std;
 
 enum ESTADOS
 {
-  TERMINAL,
-  NO_TERMINAL,
   EST_ERROR,
-  INICIAL
+  OK
+};
+
+enum AFD_ERROR_TYPE
+{
+  EOL,
+  UNKNOWN,
+  UNEXPECTED
 };
 
 typedef struct AFDError
 {
   int pos;
   char c;
+  AFD_ERROR_TYPE type;
 } AFDError;
 
 class AFD
@@ -30,11 +33,16 @@ private:
   TOKEN_TYPES tokenType;
   Token currentToken;
   int pos;
+  int initialPos;
   int lineNumber;
+  bool periodFound;
   AFDError err;
   void afdProcess();
   void firstLetterProcess();
   void identifierProcess();
+  void numberProcess();
+  void simbolProcess();
+  void getToken();
   void oProcess();
   void bProcess();
   void eProcess();
@@ -92,10 +100,27 @@ private:
   void proceduProcess();
   void procedurProcess();
   void procedureProcess();
+  void plusProcess();
+  void hyphenProcess();
+  void asteriskProcess();
+  void slashProcess();
+  void equalProcess();
+  void lessProcess();
+  void biggerProcess();
+  void openProcess();
+  void closeProcess();
+  void comaProcess();
+  void semicolonProcess();
+  void pointProcess();
+  void doubleProcess();
+  void notEqualProcess();
+  void lessEqualProcess();
+  void biggerEqualProcess();
+  void assignmentProcess();
 
 public:
   explicit AFD();
   void addLine(string);
+  void getResult(vector<Token> *);
   bool processWords();
-  queue<Token> getResult();
 };

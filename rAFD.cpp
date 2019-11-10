@@ -1,4 +1,3 @@
-#include "general.h"
 #include "afd.h"
 
 using namespace std;
@@ -24,6 +23,10 @@ void AFD::rProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::reProcess()
@@ -46,6 +49,10 @@ void AFD::reProcess()
     {
       pos--;
     }
+  }
+  else
+  {
+    getToken();
   }
 }
 
@@ -70,12 +77,16 @@ void AFD::reaProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::readProcess()
 {
   tokenValue += 'd';
-  tokenType = TOKEN_TYPES::READ_KEYWORD;
+  tokenType = TOKEN_TYPES::READ;
   if (pos < codeLine.size() && estado != EST_ERROR)
   {
     char c = codeLine[pos];
@@ -89,5 +100,9 @@ void AFD::readProcess()
     {
       pos--;
     }
+  }
+  else
+  {
+    getToken();
   }
 }

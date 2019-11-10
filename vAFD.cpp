@@ -1,4 +1,3 @@
-#include "general.h"
 #include "afd.h"
 
 using namespace std;
@@ -24,6 +23,10 @@ void AFD::vProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::vaProcess()
@@ -47,12 +50,16 @@ void AFD::vaProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::varProcess()
 {
   tokenValue += 'r';
-  tokenType = TOKEN_TYPES::VAR_KEYWORD;
+  tokenType = TOKEN_TYPES::VAR;
   if (pos < codeLine.size() && estado != EST_ERROR)
   {
     char c = codeLine[pos];
@@ -66,5 +73,9 @@ void AFD::varProcess()
     {
       pos--;
     }
+  }
+  else
+  {
+    getToken();
   }
 }

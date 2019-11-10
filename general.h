@@ -1,55 +1,72 @@
-#include <string>
-#include <cstdlib>
-#include <set>
+// #include <string>
+// #include <cstdlib>
+// #include <set>
+// #include <queue>
+// #include <iostream>
+// #include <fstream>
+
+#include <bits/stdc++.h>
 
 using namespace std;
 
 enum TOKEN_TYPES
 {
-  LETRA,
-  DIGITO,
-  IDENTIFICADOR,
-  NUMERO,
-  FACTOR,
-  TERMINO,
-  EXPRESION,
-  OPERADOR_LOGICO,
-  CONDICION,
-  SENTENCIA,
-  PROCEDIMIENTO,
-  VARIABLE_DECLARACION,
-  CONSTANTE_DECLARACION,
-  BLOQUE,
-  PROGRAMA,
-  ASIGNACION,
+  NEW_LINE,
+  NULL_TOKEN,
+  IF,
+  IN,
+  DO,
+  ODD,
+  END,
+  ELSE,
+  THEN,
+  CALL,
+  BEGIN,
+  WHILE,
+  WRITE,
+  CONST,
+  PROCEDURE,
+  VAR,
+  READ,
+  IDENTIFIER,
+  NUMBER,
+  LESS,
+  LESS_EQUAL,
+  NOT_EQUAL,
+  EQUAL,
+  GREATER,
+  GREATER_EQUAL,
+  MULTIPLY,
+  DIVIDE,
+  ADD,
+  SUBSTRACT,
+  ASSIGNMENT,
   OPEN_PAR,
   CLOSE_PAR,
-  SEMICOLON,
   COMA,
-  IF_KEYWORD,
-  IN_KEYWORD,
-  DO_KEYWORD,
-  ODD_KEYWORD,
-  END_KEYWORD,
-  ELSE_KEYWORD,
-  THEN_KEYWORD,
-  CALL_KEYWORD,
-  BEGIN_KEYWORD,
-  WHILE_KEYWORD,
-  WRITE_KEYWORD,
-  CONST_KEYWORD,
-  PROCEDURE_KEYWORD,
-  VAR_KEYWORD,
-  READ_KEYWORD
+  SEMICOLON,
+  PERIOD,
+  DOUBLE_PERIOD
 };
 
-typedef struct Token
+enum TOKEN_CATEGORY
+{
+  LOGIC,
+  TERM_OPERATOR,
+  EXPRESSION_OPERATOR,
+  KEYWORD,
+  NUMERIC
+};
+
+typedef struct
 {
   TOKEN_TYPES tipo;
   string valor;
+  int initialPos;
 } Token;
 
-set<char> Letras;
-set<char> Numeros;
+extern set<char> Letras;
+extern set<char> Numeros;
+extern set<char> Simbolos;
 
 void initEnv();

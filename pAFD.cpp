@@ -1,4 +1,3 @@
-#include "general.h"
 #include "afd.h"
 
 using namespace std;
@@ -24,6 +23,10 @@ void AFD::pProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::prProcess()
@@ -46,6 +49,10 @@ void AFD::prProcess()
     {
       pos--;
     }
+  }
+  else
+  {
+    getToken();
   }
 }
 
@@ -70,6 +77,10 @@ void AFD::proProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::procProcess()
@@ -92,6 +103,10 @@ void AFD::procProcess()
     {
       pos--;
     }
+  }
+  else
+  {
+    getToken();
   }
 }
 
@@ -116,6 +131,10 @@ void AFD::proceProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::procedProcess()
@@ -138,6 +157,10 @@ void AFD::procedProcess()
     {
       pos--;
     }
+  }
+  else
+  {
+    getToken();
   }
 }
 
@@ -162,6 +185,10 @@ void AFD::proceduProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::procedurProcess()
@@ -185,12 +212,16 @@ void AFD::procedurProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::procedureProcess()
 {
   tokenValue += 'e';
-  tokenType = TOKEN_TYPES::PROCEDURE_KEYWORD;
+  tokenType = TOKEN_TYPES::PROCEDURE;
   if (pos < codeLine.size() && estado != EST_ERROR)
   {
     char c = codeLine[pos];
@@ -204,5 +235,9 @@ void AFD::procedureProcess()
     {
       pos--;
     }
+  }
+  else
+  {
+    getToken();
   }
 }

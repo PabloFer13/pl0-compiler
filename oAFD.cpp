@@ -1,4 +1,3 @@
-#include "general.h"
 #include "afd.h"
 
 using namespace std;
@@ -24,6 +23,10 @@ void AFD::oProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::odProcess()
@@ -47,12 +50,16 @@ void AFD::odProcess()
       pos--;
     }
   }
+  else
+  {
+    getToken();
+  }
 }
 
 void AFD::oddProcess()
 {
   tokenValue += 'd';
-  tokenType = TOKEN_TYPES::ODD_KEYWORD;
+  tokenType = TOKEN_TYPES::ODD;
   if (pos < codeLine.size() && estado != EST_ERROR)
   {
     char c = codeLine[pos];
@@ -62,9 +69,13 @@ void AFD::oddProcess()
       pos--;
       identifierProcess();
     }
-    else
+    else if (c != ' ')
     {
       pos--;
     }
+  }
+  else
+  {
+    getToken();
   }
 }
